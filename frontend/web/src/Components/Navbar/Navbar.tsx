@@ -26,7 +26,7 @@ export default function Navbar() {
             <div className="z-10 font-bold text-[#1A2B78] text-2xl cursor-pointer relative">Aide</div>
           </Link>
           {isActive('/aide') && (
-            <div className="w-[110%] h-1.5 bg-[#EF4445] absolute bottom-[5px] z-0"></div>
+            <div className="w-[110%] h-[4px] bg-[#EF4445] absolute bottom-[5px] z-0"></div>
           )}
         </div>
 
