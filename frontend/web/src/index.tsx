@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Homepage from './homepage';
 import reportWebVitals from './reportWebVitals';
 import Navbar from "./Components/Navbar/Navbar";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Historique from "./historique";
-import Aide from "./aide";
-import Profil from "./profil";
+import History from "./history";
+import Help from "./help";
+import Profile from "./profile";
+import Dashboard from "./dashboard";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,14 +17,20 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/historique" element={<Historique />} />
-        <Route path="/aide" element={<Aide />} />
-        <Route path="/profil" element={<Profil />} />
-        <Route path="*" element={<h1>404 - Page non trouvée</h1>} />
-      </Routes>
+      <div className="flex h-full">
+        <Navbar />
+
+        <div className="flex-auto">
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/history" element={<History />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="*" element={<h1>404 - Page non trouvée</h1>} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   </React.StrictMode>
 );
