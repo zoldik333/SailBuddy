@@ -39,6 +39,7 @@ const DateDropdown: React.FC = () => {
       ...provided,
       backgroundColor: "transparent",
       color: "#1A2B78",
+      "&:hover": { borderColor: "#1A2B78" },
       fontWeight: "bold",
       cursor: "pointer",
       marginBottom: "8px",
