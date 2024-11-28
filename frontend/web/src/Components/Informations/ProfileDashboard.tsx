@@ -2,8 +2,11 @@ import React from 'react';
 import Titles from "../Text/Titles";
 import ClassicButton from "../Buttons/ClassicButton";
 import ConsumptionContainer from "./ConsumptionContainer";
+import { useNavigate } from 'react-router-dom';
 
 export default function ProfileDashboard() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-[#FFD3B9] h-screen w-[30%] fixed top-0 right-0 rounded-l-3xl p-16 flex flex-col gap-16">
       <div className={"flex flex-row gap-8"}>
@@ -14,7 +17,7 @@ export default function ProfileDashboard() {
         </div>
       </div>
       <div className={"flex flex-col items-center gap-8"}>
-        <ClassicButton content={"Accéder à mon profil"} onClick={() => {}}/>
+        <ClassicButton content={"Accéder à mon profil"} onClick={() => navigate('/profile')}/>
         <Titles title={"Votre consommation journalière"} size={1.5}/>
         <div className="flex flex-col w-full h-auto gap-8">
           <div className="border-b-2 border-[#1A2B78] pb-8">
