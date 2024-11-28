@@ -7,7 +7,7 @@ function Homepage() {
   return (
     <div className="flex">
       <div className="ml-[20%] w-[80%]">
-        <div className="w-[65%] flex justify-center items-center py-16">
+        <div className="w-[60%] flex justify-center items-center py-16">
           <div className={"flex justify-center flex-col items-center gap-16"}>
             <div className={"w-[60%]"}>
               <Titles title={"Naviguez l'esprit léger, Nous gérons le reste"} fontWeight={"bold"} size={2.5}/>

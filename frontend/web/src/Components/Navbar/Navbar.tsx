@@ -37,15 +37,6 @@ export default function Navbar() {
             Historique
           </div>
         </Link>
-        <Link to={"/help"}>
-          <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
-              isActive('/help') ? 'link-active' : ''
-            }`}
-          >
-            Aide
-          </div>
-        </Link>
         <Link to={"/profile"}>
           <div
             className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
@@ -53,6 +44,15 @@ export default function Navbar() {
             }`}
           >
             Profil
+          </div>
+        </Link>
+        <Link to={"/help"}>
+          <div
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
+              isActive('/help') ? 'link-active' : ''
+            }`}
+          >
+            Aide
           </div>
         </Link>
       </div>
