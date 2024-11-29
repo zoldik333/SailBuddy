@@ -1,12 +1,16 @@
 
 import React, { useState } from "react";
 import Select from "react-select";
+import {useTranslation} from "react-i18next";
 
 const DateDropdown: React.FC = () => {
+
+  const { t } = useTranslation();
+
   const options = [
-    { value: "week", label: "Semaine" },
-    { value: "month", label: "Mois" },
-    { value: "year", label: "Année" },
+    { value: "week", label: t("Week") },
+    { value: "month", label: t("Month") },
+    { value: "year", label: t("Year") },
   ];
 
   const [selectedOption, setSelectedOption] = useState(options[0]);

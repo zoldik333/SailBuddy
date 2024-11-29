@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import {useTranslation} from "react-i18next";
 
 ChartJS.register(
   CategoryScale,
@@ -22,7 +23,7 @@ ChartJS.register(
 );
 
 interface LineChartProps {
-  type: string;
+  type: number;
   data: { date: string; value: number }[];
   step?: number;
 }
@@ -30,6 +31,8 @@ interface LineChartProps {
 const LineChart: React.FC<LineChartProps> = ({ type, data, step = 20 }) => {
   const labels = data.map((item) => item.date);
   const values = data.map((item) => item.value);
+
+  const { t } = useTranslation();
 
   const chartData = {
     labels: labels,
@@ -123,12 +126,21 @@ const LineChart: React.FC<LineChartProps> = ({ type, data, step = 20 }) => {
   };
   return (
     <div>
-      <div className={"text-[#1A2B78] font-bold text-[1.5em]"}>
-        Votre consommation <span className={"text-[#EF4445]"}>d&#39;{type}</span> (en {type === "eau" ? "litres" : "kWh"})
+      <div className="text-[#1A2B78] font-bold text-[1.5em]">
+        {type === 0 ? (
+          <>
+            {t('YourCons')} <span className="text-[#EF4445]">{t('OfWater')}</span> {t('InLiter')}
+          </>
+        ) : (
+          <>
+            {t('YourCons')} <span className="text-[#EF4445]">{t('OfEnergy')}</span> {t('InKwh')}
+          </>
+        )}
       </div>
       <Line data={chartData} options={chartOptions} />
     </div>
   );
+
 };
 
 export default LineChart;

@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./Navbar.css";
+import {useTranslation} from "react-i18next";
 
 export default function Navbar() {
+
   const location = useLocation();
+  const { t } = useTranslation();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -17,7 +20,7 @@ export default function Navbar() {
               isActive('/') ? 'link-active' : ''
             }`}
           >
-            Accueil
+            {t('HomePageNav')}
           </div>
         </Link>
         <Link to={"/dashboard"} className={"w-full pl-8 flex items-center justify-center"}>
@@ -26,7 +29,7 @@ export default function Navbar() {
               isActive('/dashboard') ? 'link-active' : ''
             }`}
           >
-            Tableau de bord
+            {t('DashboardNav')}
           </div>
         </Link>
         <Link to={"/history"} className={"w-full pl-8 flex items-center justify-center"}>
@@ -35,7 +38,7 @@ export default function Navbar() {
               isActive('/history') ? 'link-active' : ''
             }`}
           >
-            Historique
+            {t('HistoryNav')}
           </div>
         </Link>
         <Link to={"/profile"} className={"w-full pl-8 flex items-center justify-center"}>
@@ -44,7 +47,7 @@ export default function Navbar() {
               isActive('/profile') ? 'link-active' : ''
             }`}
           >
-            Profil
+            {t('ProfileNav')}
           </div>
         </Link>
         <Link to={"/help"} className={"w-full pl-8 flex items-center justify-center"}>
@@ -53,7 +56,7 @@ export default function Navbar() {
               isActive('/help') ? 'link-active' : ''
             }`}
           >
-            Aide
+            {t('HelpNav')}
           </div>
         </Link>
       </div>
