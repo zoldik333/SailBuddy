@@ -35,6 +35,9 @@ export class User {
   })
   phone: string;
 
-  @ApiProperty({ description: 'The hashed password of the user' })
+  @ApiProperty({
+    example: 's3cr3t_p4$$w0rd',
+    description: 'The password of the user',
+  })
   password: string;
 }

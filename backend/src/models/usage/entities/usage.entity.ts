@@ -17,7 +17,7 @@ export class Usage {
     description: 'The capacity consumed on a day',
   })
   @Column()
-  capacity_consumed: bigint;
+  capacity_consumed: number;
 
   @OneToOne(() => Ressource, (ressource) => ressource.id)
   ressource: Ressource;

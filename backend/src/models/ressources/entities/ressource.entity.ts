@@ -20,14 +20,14 @@ export class Ressource {
     description: 'The maximum capacity of the ressource',
   })
   @Column()
-  max_capacity: bigint;
+  max_capacity: number;
 
   @ApiProperty({
     example: '200',
     description: 'The actual capacity of the ressource',
   })
   @Column()
-  actual_capacity: bigint;
+  actual_capacity: number;
 
   @ManyToOne(() => Ship, (ship) => ship.id)
   ship: Ship;
