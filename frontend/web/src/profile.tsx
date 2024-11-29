@@ -4,7 +4,7 @@ import ProfileInformation from "./Components/Informations/ProfileInformation";
 
 export default function Profile() {
   return (
-    <div className="ml-[20%] w-[80%] flex flex-col gap-8 p-32">
+    <div className="ml-[20%] w-[80%] flex flex-col gap-8 px-24 py-16">
       <div className={"flex flex-row justify-between items-center"}>
         <Titles title={"Bonjour, Prénom !"} />
         <div className={"flex flex-row gap-8 items-center"}>

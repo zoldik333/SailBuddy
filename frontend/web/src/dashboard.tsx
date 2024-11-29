@@ -12,7 +12,7 @@ export default function Dashboard() {
             <div className={"w-full"}>
               <Titles title={"Tableau de bord"} fontWeight={"bold"} size={2.5}/>
             </div>
-            <QuantityContainer type={"eau"} quantity={50} />
+            <QuantityContainer type={"eau"} quantity={60} />
             <QuantityContainer type={"énergie"} quantity={36} />
           </div>
         </div>

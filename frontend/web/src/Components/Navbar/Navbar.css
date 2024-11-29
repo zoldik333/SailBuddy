@@ -1,3 +1,35 @@
 .link-active {
-    @apply w-full h-full top-0 left-0 bg-white rounded-full shadow-md;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FEFCF4;
+    border-radius: 25px 0 0 25px;
+}
+
+.link-active::before {
+    content: "";
+    position: absolute;
+
+    background-color: transparent;
+    bottom: -50px;
+    height: 50px;
+    width: 25px;
+    border-top-right-radius: 25px;
+    right: 0;
+    box-shadow: 0 -25px 0 0 #FEFCF4;
+}
+
+.link-active::after {
+    content: "";
+    position: absolute;
+
+    background-color: transparent;
+    top: -50px;
+    height: 50px;
+    width: 25px;
+    border-bottom-right-radius: 25px;
+    right: 0;
+    box-shadow: 0 25px 0 0 #FEFCF4;
 }

@@ -8,47 +8,48 @@ export default function Navbar() {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <div className="fixed flex top-0 left-0 h-full w-[20%] bg-[#FFD3B9] flex-col items-center py-16 shadow-lg">
+    <div className="fixed flex top-0 left-0 h-full w-[20%] bg-[#FFD3B9] flex-col items-center py-16">
 
-      <div className="flex flex-1 flex-col items-center gap-12">
-        <Link to={"/"} className={"relative"}>
+      <div className="flex flex-1 flex-col items-center gap-12 w-full">
+        <Link to={"/"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg relative z-10`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 ${
+              isActive('/') ? 'link-active' : ''
+            }`}
           >
             Accueil
           </div>
-          <div className={`absolute inset-0 ${isActive('/') ? 'link-active' : ''}`}></div>
         </Link>
-        <Link to={"/dashboard"}>
+        <Link to={"/dashboard"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
               isActive('/dashboard') ? 'link-active' : ''
             }`}
           >
             Tableau de bord
           </div>
         </Link>
-        <Link to={"/history"}>
+        <Link to={"/history"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
               isActive('/history') ? 'link-active' : ''
             }`}
           >
             Historique
           </div>
         </Link>
-        <Link to={"/profile"}>
+        <Link to={"/profile"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
               isActive('/profile') ? 'link-active' : ''
             }`}
           >
             Profil
           </div>
         </Link>
-        <Link to={"/help"}>
+        <Link to={"/help"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 rounded-lg ${
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
               isActive('/help') ? 'link-active' : ''
             }`}
           >

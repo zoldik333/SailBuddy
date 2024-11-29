@@ -50,6 +50,9 @@ const LineChart: React.FC<LineChartProps> = ({ type, data, step = 20 }) => {
     backgroundColor: "#FFFFFF",
     responsive: true,
     plugins: {
+      customCanvasBackgroundColor: {
+        color: 'lightGreen',
+      },
       title: {
         display: false,
       },
