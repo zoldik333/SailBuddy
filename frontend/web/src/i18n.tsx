@@ -83,6 +83,8 @@ i18n
           EnterMessage: "How can we help you?",
           Send: "Send",
 
+          //Modal
+          ModalTitle: "Happy to see you back!"
         },
       },
       fr: {
@@ -153,6 +155,9 @@ i18n
           EnterMail: "Entrez votre email",
           EnterMessage: "Comment pouvons-nous vous aider ?",
           Send: "Envoyer",
+
+          //Modal
+          ModalTitle: "Heureux de vous retrouver!"
         },
       },
     },
