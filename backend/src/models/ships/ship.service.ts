@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateShipDto } from './dto/create-ship.dto';
@@ -6,7 +6,7 @@ import { Ship } from './entities/ship.entity';
 import { User } from '../users/entities/user.entity';
 
 @Injectable()
-export class ShipService {
+export class ShipService implements OnApplicationBootstrap {
   constructor(
     @InjectRepository(Ship)
     private readonly shipsRepository: Repository<Ship>,
@@ -14,6 +14,31 @@ export class ShipService {
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
   ) {}
+
+  async onApplicationBootstrap() {
+    console.log('On application boostrap ships !');
+    const shipsCount = await this.shipsRepository.count();
+    if (shipsCount === 0) {
+      const user = await this.userRepository.findOne({
+        where: { id: 1 }, // Id for user Amelie Ramet init onstart
+      });
+      if (user) {
+        await this.shipsRepository.save([
+          {
+            name: 'Poséïdon',
+            equipped: true,
+            tracked: true,
+            user: user,
+          },
+        ]);
+        console.log('Database seeded with initial ship for user Amelie Ramet');
+      } else {
+        console.log(
+          'Database not seeded with initial ship, user Amelie Ramet not created yet',
+        );
+      }
+    }
+  }
 
   async create(createShipDto: CreateShipDto): Promise<Ship> {
     const user = await this.userRepository.findOne({

@@ -11,12 +11,15 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtAuthGuard } from './guards/jwt.guard';
 import { User } from '../models/users/entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Ship } from '../models/ships/entities/ship.entity';
+import { ShipModule } from '../models/ships/ship.module';
 
 @Module({
   imports: [
     UserModule,
+    ShipModule,
     PassportModule,
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Ship]),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

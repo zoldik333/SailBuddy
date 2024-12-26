@@ -27,7 +27,7 @@ export class UserService implements OnApplicationBootstrap {
           picture: null,
         },
       ]);
-      console.log('Database seeded with initial users!');
+      console.log('Database seeded with initial user Amelie Ramet');
     }
   }
 
