@@ -5,7 +5,6 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const EnergieGraphic: React.FC = () => {
-
   const data = {
     labels: ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
     datasets: [
@@ -24,15 +23,14 @@ const EnergieGraphic: React.FC = () => {
   };
 
   const options = {
+    maintainAspectRatio: false,
     responsive: true,
     plugins: {
+      legend: {
+        display: false,
+      },
       title: {
-        display: true,
-        text: "Consommation kWh au cours de la semaine",
-        font: {
-          size: 16,
-        },
-        color: "#1A2B78",
+        display: false,
       },
       tooltip: {
         titleFont: {
@@ -51,39 +49,45 @@ const EnergieGraphic: React.FC = () => {
     scales: {
       x: {
         title: {
-          display: true,
-          text: "Jours de la semaine",
-          color: "#1A2B78",
-          font: {
-            size: 14,
-          },
+          display: false,
         },
         grid: {
-          color: "#1A2B78",
+          display: true,
+          color: "#E0E0E0", // Ligne de la grille
+          drawBorder: false, // Masquer la bordure des axes
+        },
+        ticks: {
+          color: "#1A2B78", // Couleur des étiquettes des axes
         },
       },
       y: {
         title: {
-          display: true,
-          text: "kWh",
-          color: "#1A2B78",
-          font: {
-            size: 14,
-          },
+          display: false,
         },
         ticks: {
           stepSize: 5,
           beginAtZero: true,
+          color: "#1A2B78", // Couleur des étiquettes des axes
         },
         grid: {
-          color: "#1A2B78",
+          display: true,
+          color: "#E0E0E0", // Ligne de la grille
+          drawBorder: false, // Masquer la bordure des axes
         },
+      },
+    },
+    layout: {
+      padding: {
+        left: 10,
+        right: 10,
+        top: 10,
+        bottom: 10,
       },
     },
   };
 
   return (
-    <div style={{ width: "100%", height: "100%" }}>
+    <div className={"h-[400px] w-full rounded-2xl bg-white p-4"}>
       <Line data={data} options={options} />
     </div>
   );

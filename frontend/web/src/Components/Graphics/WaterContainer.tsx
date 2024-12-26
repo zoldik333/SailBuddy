@@ -22,7 +22,7 @@ export default function WaterContainer({ value, size = 300 }: WaterContainerProp
 
   return (
     <div
-      className="relative"
+      className="relative m-8 rounded-2xl"
       style={{
         width: size,
         height: size,
