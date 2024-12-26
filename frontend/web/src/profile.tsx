@@ -17,7 +17,7 @@ export default function Profile() {
   return (
     <div className="ml-[20%] w-[80%] flex flex-col gap-8 px-24 py-16">
       <div className={"flex flex-row justify-between items-center"}>
-        <Titles title={`${t('Hello')}, Prénom !`} />
+        <Titles title={`${t('Hello')}, Prénom !`}/>
         <div className={"flex flex-row gap-8 items-center"}>
           <div className={"cursor-pointer"} onClick={() => changeLanguage(language === 'en' ? 'fr' : 'en')}>
             <img src={"assets/profile/globe.png"} alt={""} className="h-12 w-12 object-cover"/>
@@ -25,7 +25,7 @@ export default function Profile() {
           <div className={"text-[#1A2B78] text-[1.5em] font-bold"}>{t("Language")}</div>
         </div>
       </div>
-      <ProfileInformation />
+      <ProfileInformation/>
     </div>
   )
 }
