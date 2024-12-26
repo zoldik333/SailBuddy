@@ -11,8 +11,8 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, password: string): Promise<any> {
-    const user = await this.usersService.findOneEmail(email);
+  async validateUser(login: string, password: string): Promise<any> {
+    const user = await this.usersService.findOneEmailOrPhone(login);
     if (!user) {
       throw new BadRequestException('User not found');
     }
@@ -51,9 +51,9 @@ export class AuthService {
     return token;
   }
 
-  async login(user: { email: string; password: string }) {
-    const { email, password } = user;
-    const userInfo = await this.validateUser(email, password);
+  async login(user: { login: string; password: string }) {
+    const { login, password } = user;
+    const userInfo = await this.validateUser(login, password);
     return this.createToken(userInfo);
   }
 
@@ -62,6 +62,7 @@ export class AuthService {
     if (existingUser) {
       throw new BadRequestException('User using this email already exists');
     }
+    user.password = await argon2.hash(user.password);
 
     const newUser = await this.usersService.create(user);
     return this.createToken(newUser);

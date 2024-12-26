@@ -33,11 +33,20 @@ export class User {
     example: '06 07 08 09 10',
     description: 'The phone number of the user',
   })
+  @Column({})
   phone: string;
 
   @ApiProperty({
     example: 's3cr3t_p4$$w0rd',
     description: 'The password of the user',
   })
+  @Column()
   password: string;
+
+  @ApiProperty({
+    example: 'buffer',
+    description: 'The picture of the user',
+  })
+  @Column({ type: 'bytea', nullable: true })
+  picture: Buffer | null;
 }

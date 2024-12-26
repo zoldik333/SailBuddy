@@ -5,4 +5,5 @@ export class CreateUserDto {
   password: string;
   phone: string;
   language: string;
+  picture: string;
 }
