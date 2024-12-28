@@ -13,11 +13,13 @@ import { User } from '../models/users/entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Ship } from '../models/ships/entities/ship.entity';
 import { ShipModule } from '../models/ships/ship.module';
+import { RessourceModule } from '../models/ressources/ressource.module';
 
 @Module({
   imports: [
     UserModule,
     ShipModule,
+    RessourceModule,
     PassportModule,
     TypeOrmModule.forFeature([User, Ship]),
     JwtModule.registerAsync({
