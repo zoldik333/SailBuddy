@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Ressource } from '../../ressources/entities/ressource.entity';
 
@@ -19,6 +19,6 @@ export class Usage {
   @Column()
   capacity_consumed: number;
 
-  @OneToOne(() => Ressource, (ressource) => ressource.id)
+  @ManyToOne(() => Ressource, (ressource) => ressource.usages, { eager: true })
   ressource: Ressource;
 }

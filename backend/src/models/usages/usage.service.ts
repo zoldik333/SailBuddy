@@ -1,12 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUsageDto } from './dto/create-usage.dto';
 import { Usage } from './entities/usage.entity';
 import { Ressource } from '../ressources/entities/ressource.entity';
+import { subDays } from 'date-fns';
 
 @Injectable()
-export class UsageService {
+export class UsageService implements OnApplicationBootstrap {
   constructor(
     @InjectRepository(Usage)
     private readonly usageRepository: Repository<Usage>,
@@ -14,6 +15,36 @@ export class UsageService {
     @InjectRepository(Ressource)
     private readonly ressourceRepository: Repository<Ressource>,
   ) {}
+
+  async onApplicationBootstrap() {
+    console.log('On application boostrap usage !');
+    await this.usageRepository.clear();
+    const ressources = await this.ressourceRepository.find({
+      where: { ship: { user: { lastname: 'Ramet', surname: 'Amelie' } } },
+    });
+    for (const ressource of ressources) {
+      await this.usageRepository.save([
+        {
+          date: new Date(),
+          capacity_consumed: 50,
+          ressource: ressource,
+        },
+        {
+          date: subDays(new Date(), 1),
+          capacity_consumed: 25,
+          ressource: ressource,
+        },
+        {
+          date: subDays(new Date(), 2),
+          capacity_consumed: 10,
+          ressource: ressource,
+        },
+      ]);
+      console.log(
+        'Database seeded with initial usage for ressource related to water',
+      );
+    }
+  }
 
   async create(createUsageDto: CreateUsageDto): Promise<Usage> {
     const ressource = await this.ressourceRepository.findOne({

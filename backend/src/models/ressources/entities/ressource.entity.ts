@@ -1,6 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 import { Ship } from '../../ships/entities/ship.entity';
+import { Usage } from '../../usages/entities/usage.entity';
 
 @Entity()
 export class Ressource {
@@ -31,4 +38,7 @@ export class Ressource {
 
   @ManyToOne(() => Ship, (ship) => ship.id)
   ship: Ship;
+
+  @OneToMany(() => Usage, (usage) => usage.ressource)
+  usages: Usage[];
 }

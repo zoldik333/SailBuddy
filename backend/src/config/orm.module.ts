@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 import { User } from '../models/users/entities/user.entity';
 import { Ship } from '../models/ships/entities/ship.entity';
 import { Ressource } from '../models/ressources/entities/ressource.entity';
-import { Usage } from '../models/usage/entities/usage.entity';
+import { Usage } from '../models/usages/entities/usage.entity';
 
 @Module({
   imports: [
