@@ -72,4 +72,8 @@ export class ShipService implements OnApplicationBootstrap {
   async update(id: number, ship: CreateShipDto) {
     await this.shipsRepository.update(id, ship);
   }
+
+  async getByUserId(user: User): Promise<Ship[]> {
+    return this.shipsRepository.find({ where: { user: user } });
+  }
 }
