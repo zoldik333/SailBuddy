@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .scrollbar {
+    @apply overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-dark-blue hover:scrollbar-thumb-gray-700;
+  }
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

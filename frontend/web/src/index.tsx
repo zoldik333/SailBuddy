@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import Homepage from './homepage';
 import reportWebVitals from './reportWebVitals';
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import History from "./history";
-import Help from "./help";
-import Profile from "./profile";
-import Dashboard from "./dashboard";
+import History from './history';
+import Help from './help';
+import Profile from './profile';
+import Dashboard from './dashboard';
+import './i18n';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
