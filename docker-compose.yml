@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres
-    restart: always
+    restart: on-failure
     env_file:
       - .env
     container_name: sail_buddy_postgres
@@ -27,8 +27,22 @@ services:
     networks:
       - my_network
 
+  frontend:
+    depends_on:
+      - db
+    build:
+      context: ./frontend/
+      dockerfile: frontend.Dockerfile
+      target: ${TARGET}
+    container_name: sail_buddy_frontend
+    env_file:
+      - .env
+    ports:
+      - '3000:8081'
+    networks:
+      - my_network
+
 volumes:
-  shared-volume:
   data:
 
 networks:
