@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./Navbar.css";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
 
@@ -16,56 +16,51 @@ export default function Navbar() {
       <div className="flex flex-1 flex-col items-center gap-12 w-full">
         <Link to={"/"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 ${
-              isActive('/') ? 'link-active' : ''
-            }`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 ${isActive('/') ? 'link-active' : ''
+              }`}
           >
             {t('HomePageNav')}
           </div>
         </Link>
         <Link to={"/dashboard"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
-              isActive('/dashboard') ? 'link-active' : ''
-            }`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${isActive('/dashboard') ? 'link-active' : ''
+              }`}
           >
             {t('DashboardNav')}
           </div>
         </Link>
         <Link to={"/history"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
-              isActive('/history') ? 'link-active' : ''
-            }`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${isActive('/history') ? 'link-active' : ''
+              }`}
           >
             {t('HistoryNav')}
           </div>
         </Link>
         <Link to={"/profile"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
-              isActive('/profile') ? 'link-active' : ''
-            }`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${isActive('/profile') ? 'link-active' : ''
+              }`}
           >
             {t('ProfileNav')}
           </div>
         </Link>
         <Link to={"/help"} className={"w-full pl-8 flex items-center justify-center"}>
           <div
-            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${
-              isActive('/help') ? 'link-active' : ''
-            }`}
+            className={`font-bold text-[#1A2B78] text-xl px-4 py-2 text-center ${isActive('/help') ? 'link-active' : ''
+              }`}
           >
             {t('HelpNav')}
           </div>
         </Link>
       </div>
 
-        <img
-          src="/assets/navbar/logo-sailbuddy.png"
-          alt=""
-          className="h-20"
-        />
+      <img
+        src="/assets/logo-sailbuddy-simple.png"
+        alt=""
+        className={"w-1/2"}
+      />
     </div>
   );
 }

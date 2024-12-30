@@ -4,7 +4,7 @@ interface TitlesProps {
   title: string;
   size?: number;
   color?: string;
-  fontWeight ?: string;
+  fontWeight?: string;
 }
 
 export default function Titles({ title, size = 2, color = "#1A2B78", fontWeight }: TitlesProps) {

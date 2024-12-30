@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Titles from "../Text/Titles";
 import ClassicButton from "../Buttons/ClassicButton";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -29,8 +29,8 @@ export default function ContactForm() {
 
   return (
     <div className={"flex flex-row bg-[#FFE8D7] p-16 rounded-2xl gap-8"}>
-      <div className={"flex flex-col items-center justify-center"}>
-        <img src={"assets/navbar/logo-sailbuddy.png"} alt={""} className={"w-64 h-auto"} />
+      <div className={"flex flex-col items-left justify-center uppercase"}>
+        <img src={"assets/logo-sailbuddy-secondary.png"} alt={""} className={"w-32 h-auto"} />
         <Titles title={t("ContactUs")} />
       </div>
 
