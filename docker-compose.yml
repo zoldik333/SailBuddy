@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    container_name: sail_buddy_postgres
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - my_network
+
+  server:
+    depends_on:
+      - db
+    build:
+      context: ./backend/
+      dockerfile: backend.Dockerfile
+      target: ${TARGET}
+    container_name: sail_buddy_backend
+    env_file:
+      - .env
+    ports:
+      - '8080:8080'
+    networks:
+      - my_network
+
+volumes:
+  shared-volume:
+  data:
+
+networks:
+  my_network:
