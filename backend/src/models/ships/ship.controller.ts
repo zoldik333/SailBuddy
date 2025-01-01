@@ -3,14 +3,10 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Delete,
   Get,
-  Param,
-  ParseIntPipe,
   Post,
   Put,
   Req,
-  UnauthorizedException,
   UseGuards,
 } from '@nestjs/common';
 import { CreateShipDto, ShipDto, Ship } from './dto/create-ship.dto';
@@ -32,11 +28,10 @@ export class ShipController {
   constructor(
     private readonly shipService: ShipService,
     private readonly userService: UserService,
-  ) {
-  }
+  ) {}
 
   @Get()
-  @ApiOperation({summary: 'Get ship owned by the user'})
+  @ApiOperation({ summary: 'Get ship owned by the user' })
   @ApiResponse({
     status: 200,
     description: 'Ship retrieved successfully.',
@@ -45,12 +40,12 @@ export class ShipController {
     status: 401,
     description: 'Unauthorized: authentication required',
   })
-  @ApiResponse({type: [Ship]})
-  async getUserArea(@Req() request: any) {
+  @ApiResponse({ type: Ship })
+  async getUserShip(@Req() request: any) {
     const userId = request.user.userId;
     const user = await this.userService.findOneId(userId);
     if (!user) {
-      throw 'User not found.';
+      throw new BadRequestException('User not found.');
     }
     return await this.shipService.getByUser(user);
   }
@@ -64,15 +59,15 @@ export class ShipController {
     description: 'Unauthorized: authentication required',
   })
   @ApiBody({ type: ShipDto })
-  async createNewArea(@Body() body: ShipDto, @Req() request: any) {
+  async createUserShip(@Body() body: ShipDto, @Req() request: any) {
     const user = await this.userService.findOneId(request.user.userId);
     if (!user) {
-      throw 'User not found.';
+      throw new BadRequestException('User not found.');
     }
 
     const existingShip = await this.shipService.getByUser(user);
     if (existingShip) {
-      throw 'User already has a ship named ' + existingShip.name;
+      throw new BadRequestException('User already exists with ship.');
     }
 
     const newShip: CreateShipDto = {
@@ -84,5 +79,36 @@ export class ShipController {
       electricity_max_capacity: body.electricity_max_capacity,
     };
     return await this.shipService.create(newShip);
+  }
+
+  @Put()
+  @ApiOperation({ summary: 'Update ship' })
+  @ApiResponse({ status: 201, description: 'Ressource updated successfully.' })
+  @ApiResponse({ status: 400, description: 'Bad request: update failed' })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized: authentication required',
+  })
+  @ApiBody({ type: ShipDto })
+  async updateUserShip(@Body() body: ShipDto, @Req() request: any) {
+    const user = await this.userService.findOneId(request.user.userId);
+    if (!user) {
+      throw new BadRequestException('User not found.');
+    }
+
+    const existingShip = await this.shipService.getByUser(user);
+    if (!existingShip) {
+      throw new BadRequestException(`No ship found for user ${user.id}`);
+    }
+
+    const newShip: CreateShipDto = {
+      name: body.name,
+      equipped: body.equipped,
+      tracked: body.tracked,
+      userId: request.user.userId,
+      water_max_capacity: body.water_max_capacity,
+      electricity_max_capacity: body.electricity_max_capacity,
+    };
+    return await this.shipService.update(existingShip.id, newShip);
   }
 }

@@ -95,4 +95,8 @@ export class ShipService implements OnApplicationBootstrap {
   async getByUser(user: User): Promise<Ship | null> {
     return this.shipsRepository.findOne({ where: { user: user } });
   }
+
+  async getRessourcesByShip(ship: Ship): Promise<Ressource[]> {
+    return this.ressourceRepository.find({ where: { ship: ship } });
+  }
 }

@@ -83,3 +83,26 @@ export class Ship {
   @ApiProperty({ example: {}, description: 'The user id of the ship owner' })
   userId: number;
 }
+
+export class Ressource {
+  @ApiProperty({ example: 1, description: 'The id of ship ressource' })
+  id: number;
+
+  @ApiProperty({
+    example: 'Electricity',
+    description: 'The type of the ressource',
+  })
+  type: string;
+
+  @ApiProperty({
+    example: 300,
+    description: 'The maximum capacity of the ressource',
+  })
+  max_capacity: number;
+
+  @ApiProperty({
+    example: 200,
+    description: 'The actual capacity of the ressource',
+  })
+  actual_capacity: number;
+}
