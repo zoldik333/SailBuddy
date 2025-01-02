@@ -4,3 +4,6 @@
 
 # Env variables
 .env
+
+# Node modules
+frontend/web/node_modules

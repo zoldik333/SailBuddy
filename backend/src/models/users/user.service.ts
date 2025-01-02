@@ -12,6 +12,7 @@ export class UserService implements OnApplicationBootstrap {
   ) {}
 
   async onApplicationBootstrap() {
+    console.log('On application boostrap users !');
     const userCount = await this.usersRepository.count();
     if (userCount === 0) {
       await this.usersRepository.save([

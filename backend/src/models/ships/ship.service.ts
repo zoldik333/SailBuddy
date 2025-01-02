@@ -24,7 +24,7 @@ export class ShipService implements OnApplicationBootstrap {
     const shipsCount = await this.shipsRepository.count();
     if (shipsCount === 0) {
       const user = await this.userRepository.findOne({
-        where: { id: 1 }, // Id for user Amelie Ramet init onstart
+        where: { surname: 'Amelie', lastname: 'Ramet' },
       });
       if (user) {
         await this.shipsRepository.save([
