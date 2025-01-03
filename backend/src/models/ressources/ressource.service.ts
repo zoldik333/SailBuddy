@@ -18,12 +18,13 @@ export class RessourceService implements OnApplicationBootstrap {
   async onApplicationBootstrap() {
     console.log('On application boostrap ressources !');
     const ressourcesCount = await this.ressourcesRepository.count({
-      where: { ship: { user: { lastname: 'Ramet', surname: 'Amelie' } } },
+      where: { ship: { user: { surname: 'André', lastname: 'Gury' } } },
     });
     if (ressourcesCount === 0) {
       const ship = await this.shipsRepository.findOne({
-        where: { user: { lastname: 'Ramet', surname: 'Amelie' } },
+        where: { user: { surname: 'André', lastname: 'Gury' } },
       });
+      console.log(ship);
       if (ship) {
         await this.ressourcesRepository.save([
           {
@@ -40,11 +41,11 @@ export class RessourceService implements OnApplicationBootstrap {
           },
         ]);
         console.log(
-          'Database seeded with initial ressource for ship related to user Amelie Ramet',
+          'Database seeded with initial ressources for ship related to user André Gury',
         );
       } else {
         console.log(
-          'Database not seeded with initial ressource for ship related to user Amelie Ramet',
+          'Database not seeded with initial ressources for ship related to user André Gury',
         );
       }
     }

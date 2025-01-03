@@ -1,5 +1,6 @@
 export class CreateUsageDto {
   date: Date;
-  capacity_consumed: number;
+  capacity_start: number;
+  capacity_end: number;
   ressourceId: number;
 }

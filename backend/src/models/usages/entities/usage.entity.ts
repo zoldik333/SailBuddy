@@ -13,11 +13,18 @@ export class Usage {
   date: Date;
 
   @ApiProperty({
-    example: '100',
-    description: 'The capacity consumed on a day',
+    example: '160',
+    description: 'The capacity at the start of the day',
   })
   @Column()
-  capacity_consumed: number;
+  capacity_start: number;
+
+  @ApiProperty({
+    example: '145',
+    description: 'The capacity at the start of the day',
+  })
+  @Column()
+  capacity_end: number;
 
   @ManyToOne(() => Ressource, (ressource) => ressource.usages, { eager: true })
   ressource: Ressource;

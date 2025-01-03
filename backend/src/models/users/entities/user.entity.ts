@@ -49,4 +49,39 @@ export class User {
   })
   @Column({ type: 'bytea', nullable: true })
   picture: Buffer | null;
+
+  @ApiProperty({
+    example: 'Champs Elysées',
+    description: 'The street of the user',
+  })
+  @Column()
+  street: string;
+
+  @ApiProperty({
+    example: '42',
+    description: 'The street number of the user',
+  })
+  @Column()
+  street_number: string;
+
+  @ApiProperty({
+    example: 'Paris',
+    description: 'The city of the user',
+  })
+  @Column()
+  city: string;
+
+  @ApiProperty({
+    example: '75008',
+    description: 'The ZIP code of the user',
+  })
+  @Column()
+  zip: string;
+
+  @ApiProperty({
+    example: 'France',
+    description: 'The country of the user',
+  })
+  @Column()
+  country: string;
 }

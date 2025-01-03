@@ -5,7 +5,7 @@ import { CreateUsageDto } from './dto/create-usage.dto';
 import { Usage } from './entities/usage.entity';
 import { Ressource } from '../ressources/entities/ressource.entity';
 import { subDays } from 'date-fns';
-import {Ship} from "../ships/entities/ship.entity";
+import { Ship } from '../ships/entities/ship.entity';
 
 @Injectable()
 export class UsageService implements OnApplicationBootstrap {
@@ -21,15 +21,18 @@ export class UsageService implements OnApplicationBootstrap {
     console.log('On application boostrap usage !');
     await this.usageRepository.clear();
     const ressources = await this.ressourceRepository.find({
-      where: { ship: { user: { lastname: 'Ramet', surname: 'Amelie' } } },
+      where: { ship: { user: { surname: 'André', lastname: 'Gury' } } },
     });
     for (const ressource of ressources) {
       for (let i = 0; i < 365; i++) {
-        await this.usageRepository.save({
-          date: subDays(new Date(), i),
-          capacity_consumed: Math.floor(Math.random() * ressource.max_capacity),
-          ressource: ressource,
-        });
+        const usage = new Usage();
+        usage.date = subDays(new Date(), 365 - i);
+        usage.capacity_start = ressource.max_capacity;
+        usage.capacity_end = Math.round(
+          ressource.max_capacity - Math.random() * 100,
+        );
+        usage.ressource = ressource;
+        await this.usageRepository.save(usage);
       }
       console.log(
         'Database seeded with initial usage for ressource related to water & electricity for 1 year.',
@@ -47,7 +50,8 @@ export class UsageService implements OnApplicationBootstrap {
 
     const usage = new Usage();
     usage.date = createUsageDto.date;
-    usage.capacity_consumed = createUsageDto.capacity_consumed;
+    usage.capacity_start = createUsageDto.capacity_start;
+    usage.capacity_end = createUsageDto.capacity_end;
     usage.ressource = ressource;
 
     return await this.usageRepository.save(usage);

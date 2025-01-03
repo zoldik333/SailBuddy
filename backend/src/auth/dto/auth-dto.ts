@@ -38,6 +38,21 @@ export class RegisterDto {
 
   @ApiProperty({ description: 'The picture of the user' })
   picture: string;
+
+  @ApiProperty({ example: 'Chemin du Littoral', description: 'The street of the user' })
+  street: string;
+
+  @ApiProperty({ example: '13', description: 'The street number of the user' })
+  street_number: string;
+
+  @ApiProperty({ example: 'Marseille', description: 'The city of the user' })
+  city: string;
+
+  @ApiProperty({ example: '13015', description: 'The zip code of the user' })
+  zip: string;
+
+  @ApiProperty({ example: 'France', description: 'The country of the user' })
+  country: string;
 }
 
 export class Token {

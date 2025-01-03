@@ -17,17 +17,22 @@ export class UserService implements OnApplicationBootstrap {
     if (userCount === 0) {
       await this.usersRepository.save([
         {
-          surname: 'Amelie',
-          lastname: 'Ramet',
-          email: 'amelie.ramet.ar@gmail.com',
+          surname: 'André',
+          lastname: 'Gury',
+          email: 'andre.gury@gmail.com',
           language: 'fr',
-          phone: '06 07 08 09 10',
+          phone: '0786756453',
           password:
             '$argon2id$v=19$m=65536,t=3,p=4$/dgR98PwmASMmT8xk31ksg$vknRngM6pd0QyAjpuIzghuL8fljbh6bfbIbfjTLroFQ',
           picture: null,
+          street: 'Chemin du Littoral',
+          street_number: '13',
+          city: 'Marseille',
+          zip: '13015',
+          country: 'France',
         },
       ]);
-      console.log('Database seeded with initial user Amelie Ramet');
+      console.log('Database seeded with initial user André Gury');
     }
   }
 
@@ -42,6 +47,11 @@ export class UserService implements OnApplicationBootstrap {
     user.phone = createUserDto.phone;
     user.language = createUserDto.language;
     user.picture = buffer;
+    user.street = createUserDto.street;
+    user.street_number = createUserDto.street_number;
+    user.city = createUserDto.city;
+    user.zip = createUserDto.zip;
+    user.country = createUserDto.country;
     return await this.usersRepository.save(user);
   }
 
@@ -62,7 +72,9 @@ export class UserService implements OnApplicationBootstrap {
     if (user) {
       return user;
     }
-    return await this.usersRepository.findOneBy({ phone: login });
+    return await this.usersRepository.findOneBy({
+      phone: login.replace(' ', ''),
+    });
   }
 
   async remove(id: string): Promise<void> {

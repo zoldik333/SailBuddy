@@ -100,6 +100,11 @@ export class AuthService {
       picture: existingUser.picture
         ? existingUser.picture.toString('base64')
         : '',
+      street: existingUser.street,
+      street_number: existingUser.street_number,
+      city: existingUser.city,
+      zip: existingUser.zip,
+      country: existingUser.country,
     };
     await this.usersService.switchLanguage(existingUser.id, userDto);
   }

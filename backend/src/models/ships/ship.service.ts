@@ -22,25 +22,25 @@ export class ShipService implements OnApplicationBootstrap {
   async onApplicationBootstrap() {
     console.log('On application boostrap ships !');
     const shipsCount = await this.shipsRepository.count({
-      where: { user: { surname: 'Amelie', lastname: 'Ramet' } },
+      where: { user: { surname: 'André', lastname: 'Gury' } },
     });
     if (shipsCount === 0) {
       const user = await this.userRepository.findOne({
-        where: { surname: 'Amelie', lastname: 'Ramet' },
+        where: { surname: 'André', lastname: 'Gury' },
       });
       if (user) {
         await this.shipsRepository.save([
           {
-            name: 'Poséïdon',
+            name: 'Pélican II',
             equipped: true,
             tracked: true,
             user: user,
           },
         ]);
-        console.log('Database seeded with initial ship for user Amelie Ramet');
+        console.log('Database seeded with initial ship for user André Gury');
       } else {
         console.log(
-          'Database not seeded with initial ship, user Amelie Ramet not created yet',
+          'Database not seeded with initial ship, user André Gury not created yet',
         );
       }
     }
