@@ -28,8 +28,6 @@ services:
       - my_network
 
   frontend:
-    depends_on:
-      - db
     build:
       context: ./frontend/
       dockerfile: frontend.Dockerfile
