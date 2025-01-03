@@ -3,7 +3,6 @@ import Titles from "./Components/Text/Titles";
 import TextContainer from "./Components/Text/TextContainer";
 import ProfileDashboard from "./Components/Informations/ProfileDashboard";
 import {useTranslation} from "react-i18next";
-import Scrollbar from "./Components/Scrollbar/Scrollbar";
 import Modal from "./Components/Modal/Modal";
 
 function Homepage() {
