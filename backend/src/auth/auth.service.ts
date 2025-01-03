@@ -97,7 +97,9 @@ export class AuthService {
       password: existingUser.password,
       phone: existingUser.phone,
       language: existingUser.language,
-      picture: existingUser.picture ? existingUser.picture.toString('base64') : '',
+      picture: existingUser.picture
+        ? existingUser.picture.toString('base64')
+        : '',
     };
     await this.usersService.switchLanguage(existingUser.id, userDto);
   }

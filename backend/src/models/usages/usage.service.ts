@@ -5,6 +5,7 @@ import { CreateUsageDto } from './dto/create-usage.dto';
 import { Usage } from './entities/usage.entity';
 import { Ressource } from '../ressources/entities/ressource.entity';
 import { subDays } from 'date-fns';
+import {Ship} from "../ships/entities/ship.entity";
 
 @Injectable()
 export class UsageService implements OnApplicationBootstrap {
@@ -66,5 +67,11 @@ export class UsageService implements OnApplicationBootstrap {
 
   async update(id: number, usage: CreateUsageDto) {
     await this.usageRepository.update(id, usage);
+  }
+
+  async getUsagesByShip(ship: Ship): Promise<Usage[]> {
+    return await this.usageRepository.find({
+      where: { ressource: { ship: ship } },
+    });
   }
 }
