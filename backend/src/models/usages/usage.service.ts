@@ -23,25 +23,15 @@ export class UsageService implements OnApplicationBootstrap {
       where: { ship: { user: { lastname: 'Ramet', surname: 'Amelie' } } },
     });
     for (const ressource of ressources) {
-      await this.usageRepository.save([
-        {
-          date: new Date(),
-          capacity_consumed: 50,
+      for (let i = 0; i < 365; i++) {
+        await this.usageRepository.save({
+          date: subDays(new Date(), i),
+          capacity_consumed: Math.floor(Math.random() * ressource.max_capacity),
           ressource: ressource,
-        },
-        {
-          date: subDays(new Date(), 1),
-          capacity_consumed: 25,
-          ressource: ressource,
-        },
-        {
-          date: subDays(new Date(), 2),
-          capacity_consumed: 10,
-          ressource: ressource,
-        },
-      ]);
+        });
+      }
       console.log(
-        'Database seeded with initial usage for ressource related to water',
+        'Database seeded with initial usage for ressource related to water & electricity for 1 year.',
       );
     }
   }

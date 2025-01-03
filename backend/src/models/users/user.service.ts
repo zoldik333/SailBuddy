@@ -17,7 +17,6 @@ export class UserService implements OnApplicationBootstrap {
     if (userCount === 0) {
       await this.usersRepository.save([
         {
-          id: 1,
           surname: 'Amelie',
           lastname: 'Ramet',
           email: 'amelie.ramet.ar@gmail.com',

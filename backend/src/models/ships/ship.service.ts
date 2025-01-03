@@ -21,7 +21,9 @@ export class ShipService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     console.log('On application boostrap ships !');
-    const shipsCount = await this.shipsRepository.count();
+    const shipsCount = await this.shipsRepository.count({
+      where: { user: { surname: 'Amelie', lastname: 'Ramet' } },
+    });
     if (shipsCount === 0) {
       const user = await this.userRepository.findOne({
         where: { surname: 'Amelie', lastname: 'Ramet' },

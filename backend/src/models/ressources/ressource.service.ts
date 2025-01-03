@@ -17,7 +17,9 @@ export class RessourceService implements OnApplicationBootstrap {
 
   async onApplicationBootstrap() {
     console.log('On application boostrap ressources !');
-    const ressourcesCount = await this.ressourcesRepository.count();
+    const ressourcesCount = await this.ressourcesRepository.count({
+      where: { ship: { user: { lastname: 'Ramet', surname: 'Amelie' } } },
+    });
     if (ressourcesCount === 0) {
       const ship = await this.shipsRepository.findOne({
         where: { user: { lastname: 'Ramet', surname: 'Amelie' } },
