@@ -84,4 +84,21 @@ export class AuthService {
     }
     await this.usersService.update(existingUser.id, user);
   }
+
+  async switchUserLanguage(user: any) {
+    const existingUser = await this.usersService.findOneEmail(user.email);
+    if (!existingUser) {
+      throw new BadRequestException('User not found');
+    }
+    const userDto = {
+      surname: existingUser.surname,
+      lastname: existingUser.lastname,
+      email: existingUser.email,
+      password: existingUser.password,
+      phone: existingUser.phone,
+      language: existingUser.language,
+      picture: existingUser.picture ? existingUser.picture.toString('base64') : '',
+    };
+    await this.usersService.switchLanguage(existingUser.id, userDto);
+  }
 }

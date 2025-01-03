@@ -81,4 +81,16 @@ export class AuthController {
   async updateProfile(@Body() body: CreateUserDto) {
     return await this.authService.updateProfile(body);
   }
+
+  @Put('profile/language')
+  @ApiBearerAuth('access-token')
+  @ApiOperation({ summary: 'Switch the user language fr/en' })
+  @ApiResponse({ status: 200, description: 'Language switched successfully.' })
+  @ApiResponse({
+    status: 401,
+    description: 'Unauthorized: authentication required',
+  })
+  async switchLanguage(@Req() request: any) {
+    return await this.authService.switchUserLanguage(request.user);
+  }
 }

@@ -23,7 +23,7 @@ export class UserService implements OnApplicationBootstrap {
           language: 'fr',
           phone: '06 07 08 09 10',
           password:
-            '$argon2id$v=19$m=65536,t=3,p=4$/dgR98PwmASMmT8xk31ksg$vknRngM6pd0QyAjpuIzghuL8fljbh6bfbIbfjTLroFQ', // Hashed password for: 'amelie'
+            '$argon2id$v=19$m=65536,t=3,p=4$/dgR98PwmASMmT8xk31ksg$vknRngM6pd0QyAjpuIzghuL8fljbh6bfbIbfjTLroFQ',
           picture: null,
         },
       ]);
@@ -73,5 +73,29 @@ export class UserService implements OnApplicationBootstrap {
     const buffer = Buffer.from(user.picture, 'base64');
 
     await this.usersRepository.update(id, { ...user, picture: buffer });
+  }
+
+  async switchLanguage(id: number, user: CreateUserDto) {
+    if (user) {
+      switch (user.language) {
+        case 'fr':
+          await this.usersRepository.update(id, {
+            ...user,
+            language: 'en',
+            picture: Buffer.from(user.picture, 'base64'),
+          });
+          break;
+        case 'en':
+          await this.usersRepository.update(id, {
+            ...user,
+            language: 'fr',
+            picture: Buffer.from(user.picture, 'base64'),
+          });
+          break;
+
+        default:
+          break;
+      }
+    }
   }
 }
